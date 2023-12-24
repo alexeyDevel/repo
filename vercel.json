@@ -1,6 +1,11 @@
 {
     "version": 2,
     "name": "sovtrud-server",
+    "env": {
+        "DATABASE_URL": "@database_url",
+        "JWT_KEY": "@jwt_key",
+        "DIRECT_URL": "@direct_url"
+    },
     "builds": [
       {
         "src": "src/main.ts",
