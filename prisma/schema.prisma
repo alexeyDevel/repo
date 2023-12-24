@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  GUEST
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  first_name   String
+  last_name    String?
+  email        String    @unique
+  phone        String?   @unique
+  passwordhash String
+  birth_date   DateTime?
+  telegram     String?
+  roles         Role[]    @default([GUEST])
+  created_at   DateTime  @default(now())
+  updated_at   DateTime? @updatedAt
+  teams        Team[]
+  tasks        Task[]    @relation("AssignedTasks")
+  company      Company?  @relation(fields: [company_id], references: [id])
+  company_id   Int?
+}
+
+model Team {
+  id          Int       @id @default(autoincrement())
+  name        String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+  users       User[]
+  team_lead   String?
+  description String?
+  project_id  Int
+  project     Project   @relation(fields: [project_id], references: [id])
+  tasks       Task[]
+}
+
+model Project {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+  company_id  Int
+  company     Company   @relation(fields: [company_id], references: [id])
+  teams       Team[]
+}
+
+model Company {
+  id          Int       @id @default(autoincrement())
+  name        String
+  address     String?
+  description String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+  projects    Project[]
+  users       User[]
+}
+
+model Equipment {
+  id    Int    @id @default(autoincrement())
+  name  String
+  tasks Task[]
+}
+
+model Task {
+  id           Int          @id @default(autoincrement())
+  title        String
+  priority     TaskPriority @default(LOW)
+  status       TaskStatus   @default(TODO)
+  location     String?
+  description  String?
+  date_start   DateTime     @default(now())
+  date_end     DateTime     @updatedAt
+  team_id      Int
+  equipment_id Int?
+  team         Team         @relation(fields: [team_id], references: [id])
+  equipment    Equipment?   @relation(fields: [equipment_id], references: [id])
+  users        User[]       @relation("AssignedTasks")
+}
