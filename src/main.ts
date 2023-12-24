@@ -4,8 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
-import { HttpStatus } from '@nestjs/common';
 import { CommonExceptionFilter } from './app/filters/common-exception.filter';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
