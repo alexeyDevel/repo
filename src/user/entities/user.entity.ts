@@ -1,7 +1,7 @@
-import { $Enums, Prisma, Team } from '@prisma/client';
+import { $Enums, Prisma } from '@prisma/client';
 
 export type UserWithoutPasswordHash = Omit<
-  Prisma.UserGetPayload<{}>,
+  Prisma.UserGetPayload<any>,
   'passwordhash'
 >;
 

@@ -6,9 +6,7 @@ import {
   Param,
   Delete,
   Put,
-  Query,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { TeamService } from './team.service';
@@ -16,7 +14,6 @@ import {
   ApiBody,
   ApiOperation,
   ApiParam,
-  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -41,7 +38,7 @@ export class TeamController {
     type: TeamEntity,
   })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('create')
   async createTeam(@Body() createTeamDto: CreateTeamDto): Promise<Team> {
     return this.teamService.createTeam(createTeamDto);
@@ -56,7 +53,7 @@ export class TeamController {
   })
   @ApiResponse({ status: 404, description: 'Team not found' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
   async getTeamById(@Param('id') id: number): Promise<Team | null> {
     return this.teamService.getTeamById({ id: Number(id) });
@@ -70,10 +67,9 @@ export class TeamController {
     isArray: true,
   })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post()
   async findAll(
-    @Req() request,
     @Body()
     params?: TeamQueryParams,
   ) {
@@ -92,7 +88,7 @@ export class TeamController {
     type: TeamEntity,
   })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Put(':id')
   async updateTeam(
     @Param('id') id: string,
@@ -112,7 +108,7 @@ export class TeamController {
     type: TeamEntity,
   })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Delete(':id')
   async deleteTeam(@Param('id') id: number): Promise<Team> {
     return this.teamService.deleteTeam({ id: Number(id) });

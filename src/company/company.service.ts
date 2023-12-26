@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCompanyDto } from './dto/create-company.dto';
-import { UpdateCompanyDto } from './dto/update-company.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { Company } from './entities/company.entity';
@@ -28,7 +26,7 @@ export class CompanyService {
           },
         },
         projects: true,
-      }
+      },
     });
   }
 
@@ -62,7 +60,7 @@ export class CompanyService {
           },
         },
         projects: true,
-      }
+      },
     });
   }
 
@@ -87,7 +85,7 @@ export class CompanyService {
           },
         },
         projects: true,
-      }
+      },
     });
   }
 
@@ -115,7 +113,7 @@ export class CompanyService {
           },
         },
         projects: true,
-      }
+      },
     });
   }
 

@@ -46,20 +46,21 @@ export class UserService {
       this.prisma.user.count({
         where,
       }),
-      
     ]);
-  //   "pagination": {
-  //     "page": 1,
-  //     "pageSize": 25,
-  //     "pageCount": 0,
-  //     "total": 0
-  // }
+    //   "pagination": {
+    //     "page": 1,
+    //     "pageSize": 25,
+    //     "pageCount": 0,
+    //     "total": 0
+    // }
     const [users, count] = result;
 
     return { users, count };
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<UserWithoutPasswordHash> {
+  async createUser(
+    data: Prisma.UserCreateInput,
+  ): Promise<UserWithoutPasswordHash> {
     const hash = await hashPassword(data.passwordhash);
     const dataWithHash = { ...data, passwordhash: hash };
     return await this.prisma.user.create({
@@ -81,7 +82,7 @@ export class UserService {
             name: true,
             created_at: true,
             updated_at: true,
-            project: true
+            project: true,
           },
         },
         company: true,
@@ -115,7 +116,7 @@ export class UserService {
             name: true,
             created_at: true,
             updated_at: true,
-            project: true
+            project: true,
           },
         },
         company: true,
@@ -124,7 +125,9 @@ export class UserService {
     });
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<UserWithoutPasswordHash> {
+  async deleteUser(
+    where: Prisma.UserWhereUniqueInput,
+  ): Promise<UserWithoutPasswordHash> {
     return this.prisma.user.delete({
       where,
       select: {
@@ -144,7 +147,7 @@ export class UserService {
             name: true,
             created_at: true,
             updated_at: true,
-            project: true
+            project: true,
           },
         },
         company: true,

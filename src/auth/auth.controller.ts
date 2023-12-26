@@ -27,7 +27,7 @@ export class AuthController {
     @Body() passport: IAuthLogin,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const { access_token } = await this.authService.login(passport, response);
+    const { access_token } = await this.authService.login(passport);
     response
       .cookie('access_token', access_token, {
         httpOnly: true,

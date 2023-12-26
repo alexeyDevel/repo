@@ -8,7 +8,7 @@ import {
   Param,
   Query,
   UseGuards,
-  Req
+  Req,
 } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { TaskService } from './task.service';
@@ -26,7 +26,7 @@ export class TaskController {
 
   @ApiOperation({ summary: 'Create a new task' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('create')
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return this.taskService.create(createTaskDto);
@@ -34,7 +34,7 @@ export class TaskController {
 
   @ApiOperation({ summary: 'Get all tasks' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post()
   async findAll(
     @Req() request,
@@ -49,7 +49,7 @@ export class TaskController {
 
   @ApiOperation({ summary: 'Get a task by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Task> {
     return this.taskService.findOne({ id: Number(id) });
@@ -57,7 +57,7 @@ export class TaskController {
 
   @ApiOperation({ summary: 'Update a task by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Put(':id')
   update(
     @Param('id') id: string,
@@ -71,7 +71,7 @@ export class TaskController {
 
   @ApiOperation({ summary: 'Delete a task by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Delete(':id')
   remove(@Param('id') id: string): Promise<Task> {
     return this.taskService.remove({ id: Number(id) });

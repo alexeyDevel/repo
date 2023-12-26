@@ -8,7 +8,6 @@ import {
   Delete,
   Query,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -33,7 +32,7 @@ export class CompanyController {
   @ApiOperation({ summary: 'Create a new company' })
   @ApiBody({ type: CreateCompanyDto })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post()
   create(@Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
     return this.companyService.create(createCompanyDto);
@@ -66,7 +65,7 @@ export class CompanyController {
     required: false,
   })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get()
   findAll(
     @Query()
@@ -75,13 +74,13 @@ export class CompanyController {
     return this.companyService.findAll({
       ...params,
       where: { ...params.where },
-  });
+    });
   }
 
   @ApiOperation({ summary: 'Find a company by ID' })
   @ApiParam({ name: 'id', description: 'ID of the company' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.companyService.findOne({ id: Number(id) });
@@ -91,7 +90,7 @@ export class CompanyController {
   @ApiParam({ name: 'id', description: 'ID of the company' })
   @ApiBody({ type: UpdateCompanyDto })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateCompanyDto: UpdateCompanyDto) {
     return this.companyService.update({
@@ -103,7 +102,7 @@ export class CompanyController {
   @ApiOperation({ summary: 'Delete a company by ID' })
   @ApiParam({ name: 'id', description: 'ID of the company' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.companyService.remove({ id: Number(id) });

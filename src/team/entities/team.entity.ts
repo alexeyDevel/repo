@@ -1,6 +1,6 @@
 import { Prisma, User } from '@prisma/client';
 
-export class Team implements Prisma.TeamGetPayload<{}> {
+export class Team {
   id: number;
   created_at: Date;
   updated_at: Date;

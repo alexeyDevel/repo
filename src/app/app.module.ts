@@ -6,10 +6,7 @@ import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { TeamModule } from 'src/team/team.module';
 import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
-import {
-  PrismaClientExceptionFilter,
-  providePrismaClientExceptionFilter,
-} from 'nestjs-prisma';
+import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 import { CompanyModule } from '../company/company.module';
 import { ProjectModule } from '../project/project.module';
 import { TaskModule } from 'src/task/task.module';

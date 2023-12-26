@@ -28,7 +28,7 @@ export class EquipmentController {
 
   @ApiOperation({ summary: 'Create a new Equipment' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('create')
   create(@Body() createEquipmentDto: CreateEquipmentDto): Promise<Equipment> {
     return this.equipmentService.create(createEquipmentDto);
@@ -36,7 +36,7 @@ export class EquipmentController {
 
   @ApiOperation({ summary: 'Get all Equipments' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post()
   findAll(
     @Body()
@@ -47,7 +47,7 @@ export class EquipmentController {
 
   @ApiOperation({ summary: 'Get a Equipment by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Equipment> {
     return this.equipmentService.findOne({ id: Number(id) });
@@ -55,7 +55,7 @@ export class EquipmentController {
 
   @ApiOperation({ summary: 'Update a Equipment by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles("USER", "MODERATOR", "ADMIN")
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Put(':id')
   update(
     @Param('id') id: string,
@@ -63,7 +63,7 @@ export class EquipmentController {
     @Req() request,
   ): Promise<Equipment> {
     return this.equipmentService.update({
-      where: { id: Number(id)},
+      where: { id: Number(id) },
       data: updateEquipmentDto,
     });
   }

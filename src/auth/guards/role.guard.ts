@@ -16,18 +16,19 @@ export class RoleGuard implements CanActivate {
       return true;
     }
     const { currentUser } = context.switchToHttp().getRequest();
-    const hasRole = () => currentUser.roles.some((role) => roles.includes(role));
-    console.log('roles', roles, hasRole())
+    const hasRole = () =>
+      currentUser.roles.some((role) => roles.includes(role));
+    console.log('roles', roles, hasRole());
     if (currentUser && currentUser.roles && hasRole()) {
       return true;
     }
-    console.log('currentUser', currentUser)
+    console.log('currentUser', currentUser);
     throw new ForbiddenException('You do not have sufficient permissions');
   }
 }
 
 import { SetMetadata } from '@nestjs/common';
-import { $Enums, Prisma } from '@prisma/client';
+import { $Enums } from '@prisma/client';
 
 export const ROLES_KEY = 'roles';
 export const Roles = (...roles: $Enums.Role[]) => SetMetadata(ROLES_KEY, roles);

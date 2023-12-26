@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
 
-export class Company implements Prisma.CompanyGetPayload<{}> {
+export class Company {
   @ApiProperty({
     example: 1,
     description: 'The unique identifier for the company.',

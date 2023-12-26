@@ -6,15 +6,13 @@ import {
   Delete,
   Body,
   Param,
-  Query,
   UseGuards,
   Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Prisma, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { IUserQueryParams } from './interfaces/IUserQueryParams';
 import { hashPassword } from 'src/auth/utils/auth.bcrypt';
 import {
   ApiBody,
@@ -31,7 +29,6 @@ import { UserQueryParamsDto } from './dto/findQueryParams-user.dto';
 import { UsersWithCountResponse } from './entities/types';
 import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
 import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
-import { request } from 'http';
 
 @ApiTags('User')
 @Controller('user')
@@ -53,7 +50,7 @@ export class UserController {
   @Post('all')
   async findAll(
     @Body() query: UserQueryParamsDto,
-    @Req() request
+    @Req() request,
   ): Promise<UsersWithCountResponse> {
     return this.userService.users({
       ...query,

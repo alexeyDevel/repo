@@ -1,4 +1,4 @@
-import { Injectable, Response, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserService } from 'src/user/user.service';
@@ -21,7 +21,7 @@ export class AuthService {
     }
     return null;
   }
-  async login(passportData: IAuthLogin, res: any): Promise<TLoginResult> {
+  async login(passportData: IAuthLogin): Promise<TLoginResult> {
     const user = await this.prisma.user.findFirst({
       where: { email: passportData.email },
     });
