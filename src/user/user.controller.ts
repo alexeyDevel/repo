@@ -46,7 +46,6 @@ export class UserController {
     type: UserEntitiy,
     isArray: true,
   })
-  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('all')
   async findAll(
     @Body() query: UserQueryParamsDto,
@@ -66,8 +65,6 @@ export class UserController {
     type: UserEntitiy,
   })
   @ApiResponse({ status: 404, description: 'User not found' })
-  @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
   async findOne(@Param('id') id: string, @Req() request): Promise<User | null> {
     return this.userService.user({ id: parseInt(id) });
@@ -101,8 +98,6 @@ export class UserController {
     type: UserEntitiy,
   })
   @ApiResponse({ status: 404, description: 'User not found' })
-  @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -123,8 +118,6 @@ export class UserController {
     type: UserEntitiy,
   })
   @ApiResponse({ status: 404, description: 'User not found' })
-  @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<UserWithoutPasswordHash> {
     const userWhereUniqueInput = { id: parseInt(id) };
