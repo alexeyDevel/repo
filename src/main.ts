@@ -2,11 +2,12 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
+import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   app.use(cookieParser());
   app.use(
@@ -28,6 +29,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
