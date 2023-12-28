@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { hashPassword } from 'src/auth/utils/auth.bcrypt';
+import { hashPassword } from '../auth/utils/auth.bcrypt';
 import {
   ApiBody,
   ApiOperation,
@@ -27,8 +27,8 @@ import {
 } from './entities/user.entity';
 import { UserQueryParamsDto } from './dto/findQueryParams-user.dto';
 import { UsersWithCountResponse } from './entities/types';
-import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
-import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
+import { CookieAuthGuard } from '../auth/guards/cookie-auth.guard';
+import { RoleGuard, Roles } from '../auth/guards/role.guard';
 
 @ApiTags('User')
 @Controller('user')
