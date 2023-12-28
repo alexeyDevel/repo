@@ -4,13 +4,13 @@ import { AppService } from './app.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
-import { TeamModule } from 'src/team/team.module';
+import { TeamModule } from '../team/team.module';
 import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 import { CompanyModule } from '../company/company.module';
 import { ProjectModule } from '../project/project.module';
-import { TaskModule } from 'src/task/task.module';
-import { EquipmentModule } from 'src/equipment/equipment.module';
+import { TaskModule } from '../task/task.module';
+import { EquipmentModule } from '../equipment/equipment.module';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
