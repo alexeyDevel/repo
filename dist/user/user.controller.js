@@ -63,6 +63,7 @@ __decorate([
         type: user_entity_1.User,
         isArray: true,
     }),
+    (0, common_1.UseGuards)(cookie_auth_guard_1.CookieAuthGuard, role_guard_1.RoleGuard),
     (0, role_guard_1.Roles)('USER', 'MODERATOR', 'ADMIN'),
     (0, common_1.Post)('all'),
     __param(0, (0, common_1.Body)()),
