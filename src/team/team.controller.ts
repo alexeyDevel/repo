@@ -17,11 +17,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Prisma, Team } from '@prisma/client';
+import { Team } from '@prisma/client';
 import { Team as TeamEntity } from './entities/team.entity';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { TeamQueryParams } from './dto/team-query-params.dto';
-import { create } from 'domain';
 import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
 import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
 
