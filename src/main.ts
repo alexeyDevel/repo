@@ -2,7 +2,6 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
-import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
