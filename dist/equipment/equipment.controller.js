@@ -22,6 +22,7 @@ const equipment_query_params_dto_1 = require("./dto/equipment-query-params.dto")
 const role_guard_1 = require("../auth/guards/role.guard");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 let EquipmentController = class EquipmentController {
+    equipmentService;
     constructor(equipmentService) {
         this.equipmentService = equipmentService;
     }

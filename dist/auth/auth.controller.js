@@ -20,6 +20,7 @@ const cookie_strategy_1 = require("./strategys/cookie.strategy");
 const swagger_1 = require("@nestjs/swagger");
 const AuthLogin_dto_1 = require("./dto/AuthLogin.dto");
 let AuthController = class AuthController {
+    authService;
     constructor(authService) {
         this.authService = authService;
     }

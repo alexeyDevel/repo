@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
 const auth_bcrypt_1 = require("../auth/utils/auth.bcrypt");
 let UserService = class UserService {
+    prisma;
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -55,7 +56,7 @@ let UserService = class UserService {
     }
     async createUser(data) {
         const hash = await (0, auth_bcrypt_1.hashPassword)(data.passwordhash);
-        const dataWithHash = Object.assign(Object.assign({}, data), { passwordhash: hash });
+        const dataWithHash = { ...data, passwordhash: hash };
         return await this.prisma.user.create({
             data: dataWithHash,
             select: {

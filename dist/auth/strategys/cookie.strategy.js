@@ -15,6 +15,7 @@ const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("../auth.service");
 let CookieStrategy = class CookieStrategy extends (0, passport_1.PassportStrategy)(passport_local_1.Strategy, 'cookie') {
+    authService;
     constructor(authService) {
         super({
             usernameField: 'email',

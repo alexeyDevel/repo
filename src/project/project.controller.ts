@@ -20,12 +20,12 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { ProjectService } from './project.service';
-import { Prisma, Project } from '@prisma/client';
+import { Project } from '@prisma/client';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectQueryParams } from './dto/project-query-params.dto';
-import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
-import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
+import { CookieAuthGuard } from '../auth/guards/cookie-auth.guard';
+import { RoleGuard, Roles } from '../auth/guards/role.guard';
 
 @ApiTags('Project')
 @Controller('project')

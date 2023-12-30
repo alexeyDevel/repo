@@ -1,1 +1,1 @@
-{"version":3,"file":"AuthLogin.dto.js","sourceRoot":"","sources":["../../../src/auth/dto/AuthLogin.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAE9C,MAAa,YAAY;CAMxB;AAND,oCAMC;AAJC;IADC,IAAA,qBAAW,GAAE;;2CACA;AAGd;IADC,IAAA,qBAAW,GAAE;;8CACG"}
+{"version":3,"file":"AuthLogin.dto.js","sourceRoot":"","sources":["../../../src/auth/dto/AuthLogin.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAE9C,MAAa,YAAY;IAEvB,KAAK,CAAS;IAGd,QAAQ,CAAS;CAClB;AAND,oCAMC;AAJC;IADC,IAAA,qBAAW,GAAE;;2CACA;AAGd;IADC,IAAA,qBAAW,GAAE;;8CACG"}

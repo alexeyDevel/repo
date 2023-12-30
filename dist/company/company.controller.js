@@ -22,6 +22,7 @@ const role_guard_1 = require("../auth/guards/role.guard");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 const company_query_params_dto_1 = require("./dto/company-query-params.dto");
 let CompanyController = class CompanyController {
+    companyService;
     constructor(companyService) {
         this.companyService = companyService;
     }
@@ -29,7 +30,10 @@ let CompanyController = class CompanyController {
         return this.companyService.create(createCompanyDto);
     }
     findAll(params) {
-        return this.companyService.findAll(Object.assign(Object.assign({}, params), { where: Object.assign({}, params.where) }));
+        return this.companyService.findAll({
+            ...params,
+            where: { ...params.where },
+        });
     }
     findOne(id) {
         return this.companyService.findOne({ id: Number(id) });

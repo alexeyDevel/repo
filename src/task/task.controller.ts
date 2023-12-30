@@ -10,14 +10,14 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { ApiTags, ApiResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Prisma, Task } from '@prisma/client';
 import { TaskQueryParams } from './dto/task-query-params.dto';
-import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
-import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
+import { CookieAuthGuard } from '../auth/guards/cookie-auth.guard';
+import { RoleGuard, Roles } from '../auth/guards/role.guard';
 
 @ApiTags('Tasks')
 @Controller('tasks')

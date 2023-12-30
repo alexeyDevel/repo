@@ -14,6 +14,9 @@ const swagger_1 = require("@nestjs/swagger");
 const create_project_dto_1 = require("./create-project.dto");
 const class_validator_1 = require("class-validator");
 class UpdateProjectDto extends (0, swagger_1.PartialType)(create_project_dto_1.CreateProjectDto) {
+    name;
+    company_id;
+    description;
 }
 exports.UpdateProjectDto = UpdateProjectDto;
 __decorate([

@@ -12,6 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Company = void 0;
 const swagger_1 = require("@nestjs/swagger");
 class Company {
+    id;
+    name;
+    address;
+    description;
+    created_at;
+    updated_at;
 }
 exports.Company = Company;
 __decorate([

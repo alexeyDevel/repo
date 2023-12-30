@@ -14,6 +14,14 @@ const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const client_1 = require("@prisma/client");
 class CreateTeamDto {
+    project;
+    created_at;
+    updated_at;
+    users;
+    name;
+    team_lead;
+    description;
+    project_id;
 }
 exports.CreateTeamDto = CreateTeamDto;
 __decorate([

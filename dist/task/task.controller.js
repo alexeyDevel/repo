@@ -22,6 +22,7 @@ const task_query_params_dto_1 = require("./dto/task-query-params.dto");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 const role_guard_1 = require("../auth/guards/role.guard");
 let TaskController = class TaskController {
+    taskService;
     constructor(taskService) {
         this.taskService = taskService;
     }
@@ -29,7 +30,10 @@ let TaskController = class TaskController {
         return this.taskService.create(createTaskDto);
     }
     async findAll(request, params) {
-        return this.taskService.findAll(Object.assign(Object.assign({}, params), { where: Object.assign(Object.assign({}, params.where), { users: { some: { id: request.user.id } } }) }));
+        return this.taskService.findAll({
+            ...params,
+            where: { ...params.where, users: { some: { id: request.user.id } } },
+        });
     }
     findOne(id) {
         return this.taskService.findOne({ id: Number(id) });
