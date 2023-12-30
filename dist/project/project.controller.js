@@ -22,6 +22,7 @@ const project_query_params_dto_1 = require("./dto/project-query-params.dto");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 const role_guard_1 = require("../auth/guards/role.guard");
 let ProjectController = class ProjectController {
+    projectService;
     constructor(projectService) {
         this.projectService = projectService;
     }
@@ -29,7 +30,10 @@ let ProjectController = class ProjectController {
         return await this.projectService.create(createProjectDto);
     }
     async findAll(request, params) {
-        return await this.projectService.findAll(Object.assign(Object.assign({}, params), { where: Object.assign(Object.assign({}, params.where), { company_id: request.user.companyId }) }));
+        return await this.projectService.findAll({
+            ...params,
+            where: { ...params.where, company_id: request.user.companyId },
+        });
     }
     async findOne(id) {
         return await this.projectService.findOne({ id: Number(id) });

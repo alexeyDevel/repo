@@ -23,6 +23,7 @@ const team_query_params_dto_1 = require("./dto/team-query-params.dto");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 const role_guard_1 = require("../auth/guards/role.guard");
 let TeamController = class TeamController {
+    teamService;
     constructor(teamService) {
         this.teamService = teamService;
     }
@@ -33,7 +34,10 @@ let TeamController = class TeamController {
         return this.teamService.getTeamById({ id: Number(id) });
     }
     async findAll(params) {
-        return this.teamService.getAllTeams(Object.assign(Object.assign({}, params), { where: Object.assign({}, params.where) }));
+        return this.teamService.getAllTeams({
+            ...params,
+            where: { ...params.where },
+        });
     }
     async updateTeam(id, updateTeamDto) {
         return this.teamService.updateTeam({

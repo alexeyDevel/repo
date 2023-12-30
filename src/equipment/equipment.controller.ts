@@ -14,12 +14,11 @@ import {
 import { EquipmentService } from './equipment.service';
 import { CreateEquipmentDto } from './dto/create-equipment.dto';
 import { UpdateEquipmentDto } from './dto/update-equipment.dto';
-import { ApiTags, ApiResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
-import { Equipment, Prisma } from '@prisma/client';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { Equipment } from '@prisma/client';
 import { EquipmentQueryParams } from './dto/equipment-query-params.dto';
-import { create } from 'domain';
-import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
-import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
+import { RoleGuard, Roles } from '../auth/guards/role.guard';
+import { CookieAuthGuard } from '../auth/guards/cookie-auth.guard';
 
 @ApiTags('Equipment')
 @Controller('equipment')

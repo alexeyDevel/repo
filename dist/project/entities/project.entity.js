@@ -14,6 +14,14 @@ const swagger_1 = require("@nestjs/swagger");
 const company_entity_1 = require("../../company/entities/company.entity");
 const team_entity_1 = require("../../team/entities/team.entity");
 class Project {
+    id;
+    name;
+    description;
+    created_at;
+    updated_at;
+    company_id;
+    company;
+    teams;
 }
 exports.Project = Project;
 __decorate([

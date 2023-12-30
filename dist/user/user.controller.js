@@ -24,11 +24,15 @@ const findQueryParams_user_dto_1 = require("./dto/findQueryParams-user.dto");
 const cookie_auth_guard_1 = require("../auth/guards/cookie-auth.guard");
 const role_guard_1 = require("../auth/guards/role.guard");
 let UserController = class UserController {
+    userService;
     constructor(userService) {
         this.userService = userService;
     }
     async findAll(query, request) {
-        return this.userService.users(Object.assign(Object.assign({}, query), { where: Object.assign(Object.assign({}, query.where), { company_id: request.currentUser.company_id }) }));
+        return this.userService.users({
+            ...query,
+            where: { ...query.where, company_id: request.currentUser.company_id },
+        });
     }
     async findOne(id, request) {
         return this.userService.user({ id: parseInt(id) });
@@ -36,7 +40,10 @@ let UserController = class UserController {
     async create(createUserDto) {
         const hash = await (0, auth_bcrypt_1.hashPassword)(createUserDto.password);
         delete createUserDto.password;
-        return this.userService.createUser(Object.assign(Object.assign({}, createUserDto), { passwordhash: hash }));
+        return this.userService.createUser({
+            ...createUserDto,
+            passwordhash: hash,
+        });
     }
     async update(id, updateUserDto) {
         const userUpdateData = {

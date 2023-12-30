@@ -14,6 +14,16 @@ const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 const class_validator_1 = require("class-validator");
 class UpdateTaskDto {
+    title;
+    priority;
+    status;
+    location;
+    description;
+    date_start;
+    date_end;
+    team_id;
+    users;
+    equipment_id;
 }
 exports.UpdateTaskDto = UpdateTaskDto;
 __decorate([

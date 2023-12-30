@@ -13,6 +13,18 @@ exports.CreateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateUserDto {
+    passwordhash;
+    roles;
+    created_at;
+    updated_at;
+    teams;
+    first_name;
+    last_name;
+    email;
+    phone;
+    password;
+    birth_date;
+    telegram;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([

@@ -20,8 +20,8 @@ import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { Company, Prisma } from '@prisma/client';
-import { RoleGuard, Roles } from 'src/auth/guards/role.guard';
-import { CookieAuthGuard } from 'src/auth/guards/cookie-auth.guard';
+import { RoleGuard, Roles } from '../auth/guards/role.guard';
+import { CookieAuthGuard } from '../auth/guards/cookie-auth.guard';
 import { CompanyQueryParams } from './dto/company-query-params.dto';
 
 @ApiTags('Сompany')

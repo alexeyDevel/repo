@@ -13,6 +13,7 @@ exports.AllowAnonymous = exports.Roles = exports.ROLES_KEY = exports.RoleGuard =
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 let RoleGuard = class RoleGuard {
+    reflector;
     constructor(reflector) {
         this.reflector = reflector;
     }

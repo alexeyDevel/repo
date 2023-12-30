@@ -14,6 +14,11 @@ const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 const class_validator_1 = require("class-validator");
 class CompanyQueryParams {
+    skip;
+    take;
+    cursor;
+    where;
+    orderBy;
 }
 exports.CompanyQueryParams = CompanyQueryParams;
 __decorate([
