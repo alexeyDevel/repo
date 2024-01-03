@@ -18,7 +18,7 @@ import { JwtModule } from '@nestjs/jwt';
     UserModule,
     AuthModule,
     TeamModule,
-    CompanyModule,
+    // CompanyModule,
     // ProjectModule,
     // TaskModule,
     // EquipmentModule,
