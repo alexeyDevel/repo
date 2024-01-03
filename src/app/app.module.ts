@@ -19,8 +19,8 @@ import { JwtModule } from '@nestjs/jwt';
     AuthModule,
     TeamModule,
     // CompanyModule,
-    ProjectModule,
-    // TaskModule,
+    // ProjectModule,
+    TaskModule,
     // EquipmentModule,
     JwtModule.register({
       global: true,
