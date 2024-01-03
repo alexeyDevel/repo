@@ -19,9 +19,9 @@ import { JwtModule } from '@nestjs/jwt';
     AuthModule,
     TeamModule,
     // CompanyModule,
-    // ProjectModule,
+    ProjectModule,
     // TaskModule,
-    EquipmentModule,
+    // EquipmentModule,
     JwtModule.register({
       global: true,
       secret: process.env.JWT_KEY,
