@@ -25,7 +25,7 @@ import { join } from 'path';
     AuthModule,
     TeamModule,
     CompanyModule,
-    ProjectModule,
+    // ProjectModule,
     // TaskModule,
     // EquipmentModule,
     JwtModule.register({
