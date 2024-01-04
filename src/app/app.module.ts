@@ -26,8 +26,8 @@ import { join } from 'path';
     TeamModule,
     CompanyModule,
     ProjectModule,
-    TaskModule,
-    EquipmentModule,
+    // TaskModule,
+    // EquipmentModule,
     JwtModule.register({
       global: true,
       secret: process.env.JWT_KEY,
