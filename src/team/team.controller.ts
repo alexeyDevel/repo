@@ -65,8 +65,8 @@ export class TeamController {
     type: TeamEntity,
     isArray: true,
   })
-  @UseGuards(CookieAuthGuard, RoleGuard)
-  @Roles('USER', 'MODERATOR', 'ADMIN')
+  // @UseGuards(CookieAuthGuard, RoleGuard)
+  // @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post()
   async findAll(
     @Body()

@@ -46,8 +46,8 @@ export class UserController {
     type: UserEntitiy,
     isArray: true,
   })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('all')
   async findAll(
     @Body() query: UserQueryParamsDto,
