@@ -24,7 +24,7 @@ import { join } from 'path';
     UserModule,
     AuthModule,
     TeamModule,
-    CompanyModule,
+    // CompanyModule,
     // ProjectModule,
     // TaskModule,
     // EquipmentModule,
