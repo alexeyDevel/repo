@@ -12,6 +12,8 @@ import { ProjectModule } from '../project/project.module';
 import { TaskModule } from '../task/task.module';
 import { EquipmentModule } from '../equipment/equipment.module';
 import { JwtModule } from '@nestjs/jwt';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -26,6 +28,10 @@ import { JwtModule } from '@nestjs/jwt';
       global: true,
       secret: process.env.JWT_KEY,
       signOptions: { expiresIn: '1d' },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
     }),
   ],
   controllers: [AppController],
