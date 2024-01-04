@@ -31,7 +31,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('swagger', app, document);
+  SwaggerModule.setup('/swagger', app, document);
 
   if (process.env.NODE_ENV === 'development') {
     const pathToSwaggerStaticFolder = resolve(process.cwd(), 'swagger-static');
