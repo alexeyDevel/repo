@@ -29,9 +29,9 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('sovtrud')
     .build();
+
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/swagger', app, document);
-  await app.listen(process.env.PORT || 3000);
 
   if (process.env.NODE_ENV === 'development') {
     const pathToSwaggerStaticFolder = resolve(process.cwd(), 'swagger-static');
@@ -45,6 +45,8 @@ async function bootstrap() {
     writeFileSync(pathToSwaggerJson, swaggerJson);
     console.log(`Swagger JSON file written to: '/swagger-static/swagger.json'`);
   }
+
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 
