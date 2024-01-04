@@ -26,26 +26,26 @@ let TaskController = class TaskController {
     constructor(taskService) {
         this.taskService = taskService;
     }
-    create(createTaskDto) {
-        return this.taskService.create(createTaskDto);
+    async create(createTaskDto) {
+        return await this.taskService.create(createTaskDto);
     }
     async findAll(request, params) {
-        return this.taskService.findAll({
+        return await this.taskService.findAll({
             ...params,
             where: { ...params.where, users: { some: { id: request.user.id } } },
         });
     }
-    findOne(id) {
-        return this.taskService.findOne({ id: Number(id) });
+    async findOne(id) {
+        return await this.taskService.findOne({ id: Number(id) });
     }
-    update(id, updateTaskDto) {
-        return this.taskService.update({
+    async update(id, updateTaskDto) {
+        return await this.taskService.update({
             where: { id: Number(id) },
             data: updateTaskDto,
         });
     }
-    remove(id) {
-        return this.taskService.remove({ id: Number(id) });
+    async remove(id) {
+        return await this.taskService.remove({ id: Number(id) });
     }
 };
 exports.TaskController = TaskController;

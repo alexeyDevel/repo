@@ -1,0 +1,696 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/all": {
+      "post": {
+        "operationId": "UserController_findAll",
+        "summary": "Find all users",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "User query parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserQueryParamsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the list of all users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "operationId": "UserController_findOne",
+        "summary": "Find one user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the found user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "put": {
+        "operationId": "UserController_update",
+        "summary": "Update user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "delete": {
+        "operationId": "UserController_remove",
+        "summary": "Delete user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user": {
+      "post": {
+        "operationId": "UserController_create",
+        "summary": "Create a new user",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "summary": "sign in",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "operationId": "AuthController_getProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/team/create": {
+      "post": {
+        "operationId": "TeamController_createTeam",
+        "summary": "Create a new team",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Data for creating a team",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeamDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Team successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Team"
+        ]
+      }
+    },
+    "/team/{id}": {
+      "get": {
+        "operationId": "TeamController_getTeamById",
+        "summary": "Get information about a team by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team ID",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of team information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Team not found"
+          }
+        },
+        "tags": [
+          "Team"
+        ]
+      },
+      "put": {
+        "operationId": "TeamController_updateTeam",
+        "summary": "Update information about a team",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team ID",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New data for the team",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTeamDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Team successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Team"
+        ]
+      },
+      "delete": {
+        "operationId": "TeamController_deleteTeam",
+        "summary": "Delete a team",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team ID",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team successfully deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Team"
+        ]
+      }
+    },
+    "/team": {
+      "post": {
+        "operationId": "TeamController_findAll",
+        "summary": "Get a list of all teams",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamQueryParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of the list of teams",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Team"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Team"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Sovtrud API",
+    "description": "The sovtrud API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "sovtrud",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "UserQueryParamsDto": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "number",
+            "description": "Number of records to skip for pagination",
+            "example": 0
+          },
+          "take": {
+            "type": "number",
+            "description": "Number of records to take for pagination",
+            "example": 10
+          },
+          "where": {
+            "type": "object",
+            "description": "Filter conditions for user search",
+            "example": "{\"first_name\": \"John\"}"
+          },
+          "orderBy": {
+            "type": "object",
+            "description": "Ordering of the result set (e.g., created_at:desc)",
+            "example": {
+              "created_at": "desc"
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "John",
+            "description": "First name of the user"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Doe",
+            "description": "Last name of the user"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com",
+            "description": "Email address of the user"
+          },
+          "phone": {
+            "type": "string",
+            "example": "89000777979",
+            "description": "Phone of the user"
+          },
+          "password": {
+            "type": "string",
+            "example": "password123",
+            "description": "Password of the user"
+          },
+          "birth_date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "1990-01-01T08:00:00Z",
+            "description": "Birthdate of the user"
+          },
+          "telegram": {
+            "type": "string",
+            "example": "telegram_handle",
+            "description": "Telegram handle of the user"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "password",
+          "birth_date",
+          "telegram"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "John",
+            "description": "First name of the user"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Doe",
+            "description": "Last name of the user"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com",
+            "description": "Updated email address of the user (if applicable)"
+          },
+          "phone": {
+            "type": "string",
+            "example": "89000777979",
+            "description": "Phone of the user"
+          },
+          "birth_date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "1990-01-01T08:00:00Z",
+            "description": "Birthdate of the user"
+          },
+          "telegram": {
+            "type": "string",
+            "example": "updated_telegram_handle",
+            "description": "Updated Telegram handle of the user (if applicable)"
+          },
+          "users": {
+            "description": "User IDs associated with the team.",
+            "example": [
+              1,
+              2,
+              3
+            ],
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "birth_date",
+          "telegram"
+        ]
+      },
+      "AuthLoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "CreateTeamDto": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "UserUncheckedCreateNestedManyWithoutTeamsInput",
+            "description": "Users associated with the team.",
+            "example": {
+              "connect": [
+                {
+                  "id": 1
+                },
+                {
+                  "id": 2
+                }
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Example Team Name",
+            "description": "Name of the team"
+          },
+          "team_lead": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Team lead of the team"
+          },
+          "description": {
+            "type": "string",
+            "example": "Team description",
+            "description": "Description of the team"
+          },
+          "project_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the associated project."
+          }
+        },
+        "required": [
+          "name",
+          "team_lead",
+          "description",
+          "project_id"
+        ]
+      },
+      "Team": {
+        "type": "object",
+        "properties": {}
+      },
+      "TeamQueryParams": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "number",
+            "description": "Number of items to skip for pagination."
+          },
+          "take": {
+            "type": "number",
+            "description": "Number of items to take for pagination."
+          },
+          "cursor": {
+            "type": "object",
+            "description": "Unique identifier for cursor-based pagination."
+          },
+          "where": {
+            "type": "object",
+            "description": "Filter conditions for Team."
+          },
+          "orderBy": {
+            "type": "object",
+            "description": "Ordering of the result set (e.g., created_at:desc)",
+            "example": {
+              "name": "desc"
+            }
+          }
+        }
+      },
+      "UpdateTeamDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Updated Team Name",
+            "description": "Updated name of the team (if applicable)"
+          },
+          "team_lead": {
+            "type": "string",
+            "example": "Updated Team team_lead",
+            "description": "Updated team_lead of the team (if applicable)"
+          },
+          "description": {
+            "type": "string",
+            "example": "Updated Team description",
+            "description": "Updated description of the team (if applicable)"
+          },
+          "project_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the associated project."
+          },
+          "users": {
+            "type": "UserUncheckedCreateNestedManyWithoutTeamsInput",
+            "description": "Users associated with the team.",
+            "example": {
+              "connect": [
+                {
+                  "id": 1
+                },
+                {
+                  "id": 2
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "team_lead",
+          "description",
+          "project_id"
+        ]
+      }
+    }
+  }
+}

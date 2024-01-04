@@ -28,8 +28,8 @@ export class TaskController {
   @UseGuards(CookieAuthGuard, RoleGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
   @Post('create')
-  create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.taskService.create(createTaskDto);
+  async create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.taskService.create(createTaskDto);
   }
 
   @ApiOperation({ summary: 'Get all tasks' })
@@ -41,7 +41,7 @@ export class TaskController {
     @Body()
     params?: TaskQueryParams,
   ): Promise<Task[]> {
-    return this.taskService.findAll({
+    return await this.taskService.findAll({
       ...params,
       where: { ...params.where, users: { some: { id: request.user.id } } },
     });
@@ -51,19 +51,19 @@ export class TaskController {
   @UseGuards(CookieAuthGuard, RoleGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<Task> {
-    return this.taskService.findOne({ id: Number(id) });
+  async findOne(@Param('id') id: string): Promise<Task> {
+    return await this.taskService.findOne({ id: Number(id) });
   }
 
   @ApiOperation({ summary: 'Update a task by ID' })
   @UseGuards(CookieAuthGuard, RoleGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<Task> {
-    return this.taskService.update({
+    return await this.taskService.update({
       where: { id: Number(id) },
       data: updateTaskDto,
     });
@@ -73,7 +73,7 @@ export class TaskController {
   @UseGuards(CookieAuthGuard, RoleGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<Task> {
-    return this.taskService.remove({ id: Number(id) });
+  async remove(@Param('id') id: string): Promise<Task> {
+    return await this.taskService.remove({ id: Number(id) });
   }
 }

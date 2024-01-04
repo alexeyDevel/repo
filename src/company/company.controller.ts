@@ -39,31 +39,6 @@ export class CompanyController {
   }
 
   @ApiOperation({ summary: 'Find all companies' })
-  @ApiQuery({
-    name: 'skip',
-    description: 'Number of items to skip for pagination.',
-    required: false,
-  })
-  @ApiQuery({
-    name: 'take',
-    description: 'Number of items to take for pagination.',
-    required: false,
-  })
-  @ApiQuery({
-    name: 'cursor',
-    description: 'Unique identifier for cursor-based pagination.',
-    required: false,
-  })
-  @ApiQuery({
-    name: 'where',
-    description: 'Filter conditions for projects.',
-    required: false,
-  })
-  @ApiQuery({
-    name: 'orderBy',
-    description: 'Ordering conditions for projects.',
-    required: false,
-  })
   @UseGuards(CookieAuthGuard, RoleGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get()

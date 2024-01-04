@@ -16,24 +16,22 @@ const auth_module_1 = require("../auth/auth.module");
 const team_module_1 = require("../team/team.module");
 const core_1 = require("@nestjs/core");
 const nestjs_prisma_1 = require("nestjs-prisma");
-const company_module_1 = require("../company/company.module");
-const project_module_1 = require("../project/project.module");
-const task_module_1 = require("../task/task.module");
-const equipment_module_1 = require("../equipment/equipment.module");
 const jwt_1 = require("@nestjs/jwt");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'swagger-static'),
+                serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
+            }),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             team_module_1.TeamModule,
-            company_module_1.CompanyModule,
-            project_module_1.ProjectModule,
-            task_module_1.TaskModule,
-            equipment_module_1.EquipmentModule,
             jwt_1.JwtModule.register({
                 global: true,
                 secret: process.env.JWT_KEY,

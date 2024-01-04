@@ -62,31 +62,6 @@ __decorate([
 ], CompanyController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Find all companies' }),
-    (0, swagger_1.ApiQuery)({
-        name: 'skip',
-        description: 'Number of items to skip for pagination.',
-        required: false,
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'take',
-        description: 'Number of items to take for pagination.',
-        required: false,
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'cursor',
-        description: 'Unique identifier for cursor-based pagination.',
-        required: false,
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'where',
-        description: 'Filter conditions for projects.',
-        required: false,
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'orderBy',
-        description: 'Ordering conditions for projects.',
-        required: false,
-    }),
     (0, common_1.UseGuards)(cookie_auth_guard_1.CookieAuthGuard, role_guard_1.RoleGuard),
     (0, role_guard_1.Roles)('USER', 'MODERATOR', 'ADMIN'),
     (0, common_1.Get)(),
