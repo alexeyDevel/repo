@@ -24,56 +24,56 @@ import { RoleGuard, Roles } from '../auth/guards/role.guard';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  // @ApiOperation({ summary: 'Create a new task' })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
-  // @Post('create')
-  // create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-  //   return this.taskService.create(createTaskDto);
-  // }
+  @ApiOperation({ summary: 'Create a new task' })
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
+  @Post('create')
+  async create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.taskService.create(createTaskDto);
+  }
 
-  // @ApiOperation({ summary: 'Get all tasks' })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
-  // @Post()
-  // async findAll(
-  //   @Req() request,
-  //   @Body()
-  //   params?: TaskQueryParams,
-  // ): Promise<Task[]> {
-  //   return this.taskService.findAll({
-  //     ...params,
-  //     where: { ...params.where, users: { some: { id: request.user.id } } },
-  //   });
-  // }
+  @ApiOperation({ summary: 'Get all tasks' })
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
+  @Post()
+  async findAll(
+    @Req() request,
+    @Body()
+    params?: TaskQueryParams,
+  ): Promise<Task[]> {
+    return await this.taskService.findAll({
+      ...params,
+      where: { ...params.where, users: { some: { id: request.user.id } } },
+    });
+  }
 
-  // @ApiOperation({ summary: 'Get a task by ID' })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
-  // @Get(':id')
-  // findOne(@Param('id') id: string): Promise<Task> {
-  //   return this.taskService.findOne({ id: Number(id) });
-  // }
+  @ApiOperation({ summary: 'Get a task by ID' })
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Task> {
+    return await this.taskService.findOne({ id: Number(id) });
+  }
 
-  // @ApiOperation({ summary: 'Update a task by ID' })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
-  // @Put(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body() updateTaskDto: UpdateTaskDto,
-  // ): Promise<Task> {
-  //   return this.taskService.update({
-  //     where: { id: Number(id) },
-  //     data: updateTaskDto,
-  //   });
-  // }
+  @ApiOperation({ summary: 'Update a task by ID' })
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ): Promise<Task> {
+    return await this.taskService.update({
+      where: { id: Number(id) },
+      data: updateTaskDto,
+    });
+  }
 
-  // @ApiOperation({ summary: 'Delete a task by ID' })
-  // @UseGuards(CookieAuthGuard, RoleGuard)
-  // @Roles('USER', 'MODERATOR', 'ADMIN')
-  // @Delete(':id')
-  // remove(@Param('id') id: string): Promise<Task> {
-  //   return this.taskService.remove({ id: Number(id) });
-  // }
+  @ApiOperation({ summary: 'Delete a task by ID' })
+  @UseGuards(CookieAuthGuard, RoleGuard)
+  @Roles('USER', 'MODERATOR', 'ADMIN')
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Task> {
+    return await this.taskService.remove({ id: Number(id) });
+  }
 }
