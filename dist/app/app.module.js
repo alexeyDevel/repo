@@ -17,12 +17,18 @@ const team_module_1 = require("../team/team.module");
 const core_1 = require("@nestjs/core");
 const nestjs_prisma_1 = require("nestjs-prisma");
 const jwt_1 = require("@nestjs/jwt");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'swagger-static'),
+                serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
+            }),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             team_module_1.TeamModule,

@@ -17,6 +17,10 @@ import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
+    }),    
     UserModule,
     AuthModule,
     TeamModule,
@@ -28,10 +32,6 @@ import { join } from 'path';
       global: true,
       secret: process.env.JWT_KEY,
       signOptions: { expiresIn: '1d' },
-    }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'swagger-static'),
-      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/swagger',
     }),
   ],
   controllers: [AppController],
