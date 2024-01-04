@@ -22,7 +22,6 @@ async function bootstrap() {
   app.enableShutdownHooks();
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
-  // app.useGlobalFilters(new CommonExceptionFilter());
   const options = new DocumentBuilder()
     .setTitle('Sovtrud API')
     .setDescription('The sovtrud API description')
@@ -31,8 +30,20 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('/swagger', app, document);
-
+  SwaggerModule.setup('swagger', app, document, {
+    customSiteTitle: 'Backend Generator',
+    customfavIcon: 'https://avatars.githubusercontent.com/u/6936373?s=200&v=4',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+    ],
+    customCssUrl: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+    ],
+  });
+  await app.listen(process.env.PORT || 3000);
   if (process.env.NODE_ENV === 'development') {
     const pathToSwaggerStaticFolder = resolve(process.cwd(), 'swagger-static');
 
@@ -45,8 +56,5 @@ async function bootstrap() {
     writeFileSync(pathToSwaggerJson, swaggerJson);
     console.log(`Swagger JSON file written to: '/swagger-static/swagger.json'`);
   }
-
-  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
-
