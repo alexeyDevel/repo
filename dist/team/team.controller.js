@@ -91,8 +91,6 @@ __decorate([
         type: team_entity_1.Team,
         isArray: true,
     }),
-    (0, common_1.UseGuards)(cookie_auth_guard_1.CookieAuthGuard, role_guard_1.RoleGuard),
-    (0, role_guard_1.Roles)('USER', 'MODERATOR', 'ADMIN'),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
