@@ -21,7 +21,10 @@
         "CONNECT",
         "TRACE"
       ]
+    },
+    {
+      "src": "/swagger/?(.*)",
+      "dest": "/swagger-static/$1"
     }
-  ],
-  "rewrites": [{ "source": "/swagger/(.*)", "destination": "/swagger" }]
+  ]
 }
