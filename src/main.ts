@@ -35,7 +35,7 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV === 'development') {
     const pathToSwaggerStaticFolder = resolve(process.cwd(), 'swagger-static');
-
+    
     // write swagger json file
     const pathToSwaggerJson = resolve(
       pathToSwaggerStaticFolder,
