@@ -30,7 +30,6 @@ async function bootstrap() {
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     swagger_1.SwaggerModule.setup('/swagger', app, document);
-    await app.listen(process.env.PORT || 3000);
     if (process.env.NODE_ENV === 'development') {
         const pathToSwaggerStaticFolder = (0, path_1.resolve)(process.cwd(), 'swagger-static');
         const pathToSwaggerJson = (0, path_1.resolve)(pathToSwaggerStaticFolder, 'swagger.json');
@@ -38,6 +37,7 @@ async function bootstrap() {
         (0, fs_1.writeFileSync)(pathToSwaggerJson, swaggerJson);
         console.log(`Swagger JSON file written to: '/swagger-static/swagger.json'`);
     }
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
